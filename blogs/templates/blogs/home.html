@@ -1,0 +1,9 @@
+{% extends "blogs/base.html" %}
+
+{% block content %}
+    <div class="container mt-4 text-center">
+        <h1 class="display-4 text-primary">Добро пожаловать!</h1>
+        <p class="lead">Приветствуем вас на нашем блоге.</p>
+        <a href="{% url 'blogs:blog' %}" class="btn btn-success btn-lg">Посмотреть записи</a>
+    </div>
+{% endblock %}

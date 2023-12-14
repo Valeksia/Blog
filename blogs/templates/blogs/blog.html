@@ -1,0 +1,42 @@
+{% extends "blogs/base.html" %}
+
+{% block title %}Блог{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="display-4 text-center mb-4">Добро пожаловать в блог</h1>
+        <a class="btn btn-primary mb-3" href="{% url 'blogs:create_post' %}">Создать новую запись</a>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mb-3">Ваши записи:</h2>
+                <ul class="list-group">
+                    {% for post in user_posts %}
+                        <li class="list-group-item">
+                            <h2>{{ post.title }}</h2>
+                            <p>{{ post.text }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a class="btn btn-secondary" href="{% url 'blogs:edit_post' post.id %}">Редактировать</a>
+                                <p class="text-muted">Дата добавления: {{ post.date_added }}</p>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="col-md-6">
+                <h2 class="mb-3">Записи других авторов:</h2>
+                <ul class="list-group">
+                    {% for post in other_posts %}
+                        <li class="list-group-item">
+                            <h2>{{ post.title }}</h2>
+                            <p>{{ post.text }}</p>
+                            <p class="text-muted">Автор: {{ post.author.username }}</p>
+                            <p class="text-muted">Дата добавления: {{ post.date_added }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
